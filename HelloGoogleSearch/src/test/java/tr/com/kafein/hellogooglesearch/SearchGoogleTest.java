@@ -43,7 +43,12 @@ public class SearchGoogleTest {
     driver.findElement(By.name("q")).submit();
     // 5 | submit | name=q | 
     //throw new Error("`submit` is not a supported command in Selenium WebDriver. Please re-record the step in the IDE.");
+    System.out.println(driver.getTitle());
+    driver.navigate().back();
+    System.out.println(driver.getCurrentUrl());
+    driver.navigate().refresh();
 
-    Thread.sleep(5000);
+    System.out.println(driver.getTitle());
+    System.out.println(driver.getPageSource());
   }
 }
