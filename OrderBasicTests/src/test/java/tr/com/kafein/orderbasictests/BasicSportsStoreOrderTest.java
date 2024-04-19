@@ -18,24 +18,25 @@ public class BasicSportsStoreOrderTest {
   private WebDriver driver;
   private Map<String, Object> vars;
   JavascriptExecutor js;
+
   @BeforeEach
   public void setUp() {
+
     driver = new ChromeDriver();
     js = (JavascriptExecutor) driver;
     vars = new HashMap<String, Object>();
-  }
-  @AfterEach
-  public void tearDown() {
-    driver.quit();
-  }
-  @Test
-  public void basicSportsStoreOrder() {
     // Test name: BasicSportsStoreOrder
     // Step # | name | target | value
-    // 1 | open | / | 
+    // 1 | open | / |
     driver.get("http://sportsstore.innovium.net/");
     // 2 | setWindowSize | max |
     driver.manage().window().maximize();
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+  }
+
+  @Test
+  public void basicSportsStoreOrder() {
+
     // 3 | click | linkText=Home | 
     driver.findElement(By.linkText("Home")).click();
     // 4 | click | xpath=//button[@type='submit'] | 
@@ -108,5 +109,10 @@ public class BasicSportsStoreOrderTest {
     assertEquals(driver.findElement(By.cssSelector("p:nth-child(3)")).getText(), "We'll ship your goods as soon as possible.");
     // 32 | click | linkText=Return to Store | 
     driver.findElement(By.linkText("Return to Store")).click();
+  }
+  @AfterEach
+  public void tearDown() {
+    driver.close();
+    driver.quit();
   }
 }
