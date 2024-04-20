@@ -1,5 +1,7 @@
 package tr.com.kafein.orderpof;
 
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -53,7 +55,11 @@ public class OrderPage {
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         PageFactory.initElements(driver, this);
     }
+    @ParameterizedTest
+    @CsvSource({
+            "John Doe, 123 Main St, Apt 4, , Springfield, Illinois, 62704, USA",
 
+    })
     public void enterDetails(String name, String line1, String line2, String line3, String city, String state, String zip, String country) {
         nameField.sendKeys(name);
         line1Field.sendKeys(line1);
