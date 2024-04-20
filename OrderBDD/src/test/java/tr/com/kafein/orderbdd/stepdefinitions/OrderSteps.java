@@ -12,6 +12,7 @@ import org.testng.Assert;
 import tr.com.kafein.orderbdd.HomePage;
 import tr.com.kafein.orderbdd.OrderPage;
 
+import java.io.IOException;
 import java.time.Duration;
 
 /*
@@ -60,18 +61,18 @@ public class OrderSteps {
     }
 
     @When("User fills order information with name {string}, line1 {string}, line2 {string}, line3 {string}, city {string}, state {string}, zip {string}, and country {string}")
-    public void user_fills_order_information_with_name_line1_line2_line3_city_state_zip_and_country(String name, String line1, String line2, String line3, String city, String state, String zip, String country) {
+    public void user_fills_order_information_with_name_line1_line2_line3_city_state_zip_and_country(String name, String line1, String line2, String line3, String city, String state, String zip, String country) throws IOException {
         orderPage.enterDetails(name, line1, line2,line3, city, state, zip, country);
     }
 
     @Then("User should see order confirmation message")
-    public void user_should_see_order_confirmation_message(){
+    public void user_should_see_order_confirmation_message() throws IOException {
         orderPage.submitOrder();
         Assert.assertEquals(orderPage.getConfirmationText(),"Thanks!");
     }
 
     @Then("Return To Store")
-    public void returnToStore(){
+    public void returnToStore() throws IOException {
         orderPage.returnToStore();
 
         if (driver!=null){

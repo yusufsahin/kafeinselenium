@@ -1,14 +1,18 @@
 package tr.com.kafein.orderbdd;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.time.Duration;
+import java.util.Date;
+
+import static io.cucumber.core.internal.com.fasterxml.jackson.databind.type.LogicalType.DateTime;
 
 public class OrderPage {
     private WebDriver driver;
@@ -49,7 +53,7 @@ public class OrderPage {
         this.driver = driver;
         PageFactory.initElements(driver,this);
     }
-    public  OrderPage enterDetails(String name, String line1, String line2, String line3, String city, String state, String zip,String country){
+    public  OrderPage enterDetails(String name, String line1, String line2, String line3, String city, String state, String zip,String country) throws IOException {
         nameField.sendKeys(name);
         line1Field.sendKeys(line1);
         line2Field.sendKeys(line2);
@@ -58,6 +62,7 @@ public class OrderPage {
         stateField.sendKeys(state);
         zipField.sendKeys(zip);
         countryField.sendKeys(country);
+        takeScreenShot("screenshot_order_info");
         return  this;
     }
     public OrderPage submitOrder() {
@@ -66,14 +71,28 @@ public class OrderPage {
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("h2")));
         return this;
     }
-    public String getConfirmationText() {
+    public String getConfirmationText() throws IOException {
         return confirmationHeader.getText();
+
     }
-    public OrderPage returnToStore() {
+    public OrderPage returnToStore() throws IOException {
+        takeScreenShot("screenshot_return_to_store");
         returnToStoreButton.click();
         return this;
     }
     private void waitForElement(WebElement element) {
         new WebDriverWait(driver, Duration.ofSeconds(30)).until(ExpectedConditions.visibilityOf(element));
+    }
+
+    private void takeScreenShot(String image) throws IOException {
+
+
+        TakesScreenshot screenshotTaker= (TakesScreenshot) driver;
+
+        File screenshotFile= screenshotTaker.getScreenshotAs(OutputType.FILE);
+
+        File destinationFile= new File("src/test/resources/"+ image+ new Date().getTime()+".png");
+
+        Files.copy(screenshotFile.toPath(),destinationFile.toPath());
     }
 }
