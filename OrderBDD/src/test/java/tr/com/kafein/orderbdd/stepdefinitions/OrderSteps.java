@@ -59,7 +59,7 @@ public class OrderSteps {
         homePage.goToCheckout();
     }
 
-    @And("User_fills_order_information")
+    @And("User fills order information")
     public void user_fills_order_information(){
         orderPage.enterDetails("John Doe", "ABC Bulv.", "996677 Str.", "No:10", "New York", "NY", "456677", "USA");
     }
