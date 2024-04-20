@@ -49,7 +49,7 @@ public class OrderPage {
         this.driver = driver;
         PageFactory.initElements(driver,this);
     }
-    public  OrderPage enterDetails(String name, String line1, String line2, String line3, String city, String state, String zip, String country){
+    public  OrderPage enterDetails(String name, String line1, String line2, String line3, String city, String state, String zip,String country){
         nameField.sendKeys(name);
         line1Field.sendKeys(line1);
         line2Field.sendKeys(line2);

@@ -59,9 +59,9 @@ public class OrderSteps {
         homePage.goToCheckout();
     }
 
-    @And("User fills order information")
-    public void user_fills_order_information(){
-        orderPage.enterDetails("John Doe", "ABC Bulv.", "996677 Str.", "No:10", "New York", "NY", "456677", "USA");
+    @When("User fills order information with name {string}, line1 {string}, line2 {string}, line3 {string}, city {string}, state {string}, zip {string}, and country {string}")
+    public void user_fills_order_information_with_name_line1_line2_line3_city_state_zip_and_country(String name, String line1, String line2, String line3, String city, String state, String zip, String country) {
+        orderPage.enterDetails(name, line1, line2,line3, city, state, zip, country);
     }
 
     @Then("User should see order confirmation message")
@@ -73,6 +73,10 @@ public class OrderSteps {
     @Then("Return To Store")
     public void returnToStore(){
         orderPage.returnToStore();
+
+        if (driver!=null){
+            driver.quit();
+        };
     }
 
 }
