@@ -19,13 +19,13 @@ public class HomePage {
     }
 
     public void addToCart(){
-        driver.findElement(By.xpath("//button[@type=\'submit\']")).click();
+        driver.findElement(By.xpath("//button[@type='submit']")).click();
         // 5 | click | css=h2 |
         driver.findElement(By.cssSelector("h2")).click();
         // 6 | waitForElementPresent | xpath=//h2[contains(.,'Your cart')] | 30000
         {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-            wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h2[contains(.,\'Your cart\')]")));
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h2[contains(.,'Your cart')]")));
         }
     }
 
@@ -36,7 +36,7 @@ public class HomePage {
         // 9 | waitForElementVisible | xpath=//h2[contains(.,'Check out now')] | 30000
         {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[contains(.,\'Check out now\')]")));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[contains(.,'Check out now')]")));
         }
     }
 }

@@ -34,8 +34,6 @@ public class OrderPage {
         // 18 | type | id=Line3 | 6785
         driver.findElement(By.id("Line3")).sendKeys("6785");
         // 19 | click | id=City |
-
-
         driver.findElement(By.id("City")).click();
         // 20 | type | id=City | Austin
         driver.findElement(By.id("City")).sendKeys("Austin");
@@ -48,7 +46,6 @@ public class OrderPage {
         // 24 | type | id=Zip | 56422
         driver.findElement(By.id("Zip")).sendKeys("56422");
         // 25 | click | id=Country |
-
         driver.findElement(By.id("Country")).click();
         // 26 | type | id=Country | USA
         driver.findElement(By.id("Country")).sendKeys("USA");
